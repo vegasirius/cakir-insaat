@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const navItems = [
@@ -11,8 +12,16 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-zinc-950/90 backdrop-blur">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5">
-        <Link href="/" className="text-xl font-semibold tracking-wide text-white">
-          Çakır İnşaat
+        <Link href="/" className="flex items-center gap-3 text-white">
+          <Image
+            src="/images/logo/10.png"
+            alt="Çakır İnşaat Logo"
+            width={140}
+            height={32}
+            className="h-8 w-auto object-contain"
+            priority
+          />
+          <span className="hidden text-sm tracking-[0.12em] text-zinc-300 lg:inline">ÇAKIR İNŞAAT</span>
         </Link>
 
         <nav className="hidden items-center gap-7 text-sm text-zinc-300 md:flex">
@@ -25,7 +34,7 @@ export function SiteHeader() {
 
         <Link
           href="/iletisim"
-          className="rounded-md border border-white/30 bg-white/10 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/20"
+          className="brand-button rounded-md px-4 py-2 text-sm font-semibold transition"
         >
           Teklif Al
         </Link>

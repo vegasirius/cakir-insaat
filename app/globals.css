@@ -1,26 +1,76 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0f1012;
+  --foreground: #f3f4f6;
+  --surface: #16181d;
+  --card: #1b1e24;
+  --muted: #9ca3af;
+  --accent: #d9b4b7;
+  --accent-strong: #e7c7ca;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-manrope);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-display: var(--font-playfair);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-manrope), Arial, Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
+  letter-spacing: 0.01em;
+}
+
+.brand-page {
+  background:
+    radial-gradient(1200px 500px at 80% -10%, rgba(217, 180, 183, 0.1), transparent 55%),
+    radial-gradient(700px 300px at 0% 10%, rgba(255, 255, 255, 0.03), transparent 50%),
+    var(--background);
+  color: var(--foreground);
+}
+
+.brand-surface {
+  background-color: var(--surface);
+}
+
+.brand-card {
+  background-color: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.brand-muted {
+  color: var(--muted);
+}
+
+.brand-accent-text {
+  color: var(--accent-strong);
+}
+
+.brand-button {
+  background-color: var(--accent-strong);
+  color: #1a1a1a;
+}
+
+.brand-button:hover {
+  background-color: var(--accent);
+}
+
+.brand-button-ghost {
+  border: 1px solid rgba(231, 199, 202, 0.55);
+  color: #f4f4f5;
+}
+
+.brand-button-ghost:hover {
+  background-color: rgba(231, 199, 202, 0.08);
 }
