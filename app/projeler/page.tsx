@@ -1,13 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-
-const projectCards = [
-  { name: "Konut Projesi - İstanbul", status: "Tamamlanan" },
-  { name: "Villa Yenileme - Bağcılar", status: "Devam Eden" },
-  { name: "Ticari Alan Tadilatı", status: "Tamamlanan" },
-  { name: "Anahtar Teslim Daire Uygulaması", status: "Devam Eden" },
-];
+import { projects } from "@/data/projects";
 
 export default function ProjelerPage() {
   return (
@@ -21,17 +16,26 @@ export default function ProjelerPage() {
         </p>
 
         <div className="mt-10 grid gap-5 md:grid-cols-2">
-          {projectCards.map((project) => (
-            <article key={project.name} className="rounded-2xl border border-white/10 bg-zinc-900 p-6">
-              <div className="flex items-center justify-between gap-4">
-                <h2 className="text-lg font-semibold">{project.name}</h2>
-                <span className="rounded-full border border-white/20 px-3 py-1 text-xs text-zinc-300">
-                  {project.status}
-                </span>
+          {projects.map((project) => (
+            <article key={project.title} className="overflow-hidden rounded-2xl border border-white/10 bg-zinc-900">
+              <div className="relative h-52 w-full bg-zinc-800">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover"
+                />
               </div>
-              <p className="mt-4 text-sm text-zinc-300">
-                Proje detay metni ve görsel galeri bu kartın içine eklenecek.
-              </p>
+              <div className="p-6">
+                <div className="flex items-center justify-between gap-4">
+                  <h2 className="text-lg font-semibold">{project.title}</h2>
+                  <span className="rounded-full border border-white/20 px-3 py-1 text-xs text-zinc-300">
+                    {project.status}
+                  </span>
+                </div>
+                <p className="mt-2 text-xs uppercase tracking-wide text-zinc-400">{project.location}</p>
+                <p className="mt-4 text-sm text-zinc-300">{project.description}</p>
+              </div>
             </article>
           ))}
         </div>
