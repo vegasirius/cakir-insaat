@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { SiteFooter } from "@/components/site-footer";
@@ -10,6 +10,36 @@ import { projects } from "@/data/projects";
 export default function ProjelerPage() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const selectedProject = selectedIndex !== null ? projects[selectedIndex] : null;
+
+  // Klavye navigasyonu: Esc, Arrow Left/Right
+  useEffect(() => {
+    if (selectedIndex === null) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setSelectedIndex(null);
+      } else if (e.key === "ArrowLeft" && selectedIndex > 0) {
+        setSelectedIndex(selectedIndex - 1);
+      } else if (e.key === "ArrowRight" && selectedIndex < projects.length - 1) {
+        setSelectedIndex(selectedIndex + 1);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedIndex]);
+
+  const handlePrev = () => {
+    if (selectedIndex !== null && selectedIndex > 0) {
+      setSelectedIndex(selectedIndex - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (selectedIndex !== null && selectedIndex < projects.length - 1) {
+      setSelectedIndex(selectedIndex + 1);
+    }
+  };
 
   return (
     <div className="brand-page min-h-screen">
@@ -69,16 +99,28 @@ export default function ProjelerPage() {
         </div>
       </main>
 
-      {selectedProject && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/70 p-4">
-          <div className="brand-card relative w-full max-w-3xl overflow-hidden rounded-2xl">
-            <button
-              type="button"
-              onClick={() => setSelectedIndex(null)}
-              className="absolute right-4 top-4 z-10 rounded-md border border-white/20 bg-black/40 px-3 py-1 text-sm text-white hover:bg-black/60"
-            >
-              Kapat
-            </button>
+      {selectedProject && selectedIndex !== null && (
+        <div
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/70 p-4"
+          onClick={() => setSelectedIndex(null)}
+        >
+          <div
+            className="brand-card relative w-full max-w-3xl overflow-hidden rounded-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Kapat butonu ve sayaç */}
+            <div className="absolute right-4 top-4 z-10 flex items-center gap-3">
+              <span className="rounded-md border border-white/20 bg-black/40 px-3 py-1 text-xs text-white">
+                {selectedIndex + 1} / {projects.length}
+              </span>
+              <button
+                type="button"
+                onClick={() => setSelectedIndex(null)}
+                className="rounded-md border border-white/20 bg-black/40 px-3 py-1 text-sm text-white hover:bg-black/60"
+              >
+                Kapat
+              </button>
+            </div>
 
             <div className="relative h-72 w-full bg-zinc-800/80 md:h-96">
               <Image
@@ -87,6 +129,34 @@ export default function ProjelerPage() {
                 fill
                 className="object-cover"
               />
+
+              {/* Sol ok tuşu */}
+              {selectedIndex > 0 && (
+                <button
+                  type="button"
+                  onClick={handlePrev}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full border border-white/20 bg-black/60 p-3 text-white hover:bg-black/80"
+                  aria-label="Önceki proje"
+                >
+                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+              )}
+
+              {/* Sağ ok tuşu */}
+              {selectedIndex < projects.length - 1 && (
+                <button
+                  type="button"
+                  onClick={handleNext}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full border border-white/20 bg-black/60 p-3 text-white hover:bg-black/80"
+                  aria-label="Sonraki proje"
+                >
+                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              )}
             </div>
 
             <div className="p-6 md:p-8">
@@ -100,6 +170,15 @@ export default function ProjelerPage() {
                 {selectedProject.location}
               </p>
               <p className="brand-muted mt-4 leading-8">{selectedProject.description}</p>
+
+              {/* Navigasyon ipucu */}
+              <p className="brand-muted mt-6 text-xs">
+                <kbd className="rounded border border-white/20 px-2 py-1">◀</kbd>
+                {" "}<kbd className="rounded border border-white/20 px-2 py-1">▶</kbd>
+                {" "}tuşları ile gezinebilir,{" "}
+                <kbd className="rounded border border-white/20 px-2 py-1">Esc</kbd>
+                {" "}ile kapatabilirsiniz.
+              </p>
             </div>
           </div>
         </div>
