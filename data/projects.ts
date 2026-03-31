@@ -1,12 +1,6 @@
-export type ProjectItem = {
-  title: string;
-  status: "Tamamlanan" | "Devam Eden";
-  location: string;
-  description: string;
-  image: string;
-};
+import type { Project } from "@/types";
 
-export const projects: ProjectItem[] = [
+export const projects: Project[] = [
   {
     title: "Örnek Proje 1",
     status: "Tamamlanan",
