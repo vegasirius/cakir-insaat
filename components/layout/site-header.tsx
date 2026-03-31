@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 const navItems = [
   { href: "/", label: "Ana Sayfa" },
@@ -44,14 +45,18 @@ export function SiteHeader({ isTransparent = false }: { isTransparent?: boolean 
               {item.label}
             </Link>
           ))}
+//... existing code ...
         </nav>
 
-        <Link
-          href="/iletisim"
-          className="hidden rounded-md border border-white/50 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white hover:text-black sm:block"
-        >
-          Teklif Al
-        </Link>
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <Link
+            href="/iletisim"
+            className="hidden rounded-md border border-white/50 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white hover:text-black sm:block"
+          >
+            Teklif Al
+          </Link>
+        </div>
       </div>
     </header>
   );

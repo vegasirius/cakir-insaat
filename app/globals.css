@@ -1,26 +1,82 @@
 @import "tailwindcss";
 
+@import "tailwindcss";
+
 :root {
-  --background: #0f1012;
-  --foreground: #f3f4f6;
-  --surface: #16181d;
-  --card: #1b1e24;
-  --muted: #9ca3af;
-  --accent: #d9b4b7;
-  --accent-strong: #e7c7ca;
+  --background: 255 255 255;
+  --foreground: 15 16 18;
+  --card: 255 255 255;
+  --card-foreground: 15 16 18;
+  --popover: 255 255 255;
+  --popover-foreground: 15 16 18;
+  --primary: 15 16 18;
+  --primary-foreground: 243 244 246;
+  --secondary: 243 244 246;
+  --secondary-foreground: 15 16 18;
+  --muted: 156 163 175;
+  --muted-foreground: 107 114 128;
+  --accent: 243 244 246;
+  --accent-foreground: 15 16 18;
+  --destructive: 239 68 68;
+  --destructive-foreground: 243 244 246;
+  --border: 229 231 235;
+  --input: 229 231 235;
+  --ring: 15 16 18;
+  --radius: 0.5rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+.dark {
+  --background: 15 16 18;
+  --foreground: 243 244 246;
+  --card: 22 24 29;
+  --card-foreground: 243 244 246;
+  --popover: 22 24 29;
+  --popover-foreground: 243 244 246;
+  --primary: 243 244 246;
+  --primary-foreground: 22 24 29;
+  --secondary: 31 34 41;
+  --secondary-foreground: 243 244 246;
+  --muted: 31 34 41;
+  --muted-foreground: 156 163 175;
+  --accent: 31 34 41;
+  --accent-foreground: 243 244 246;
+  --destructive: 127 29 29;
+  --destructive-foreground: 243 244 246;
+  --border: 31 34 41;
+  --input: 31 34 41;
+  --ring: 217 180 183;
+}
+
+@theme {
+  --color-background: rgb(var(--background));
+  --color-foreground: rgb(var(--foreground));
   --font-sans: var(--font-manrope);
   --font-mono: var(--font-geist-mono);
   --font-display: var(--font-playfair);
+
+  --color-card: rgb(var(--card));
+  --color-card-foreground: rgb(var(--card-foreground));
+  --color-popover: rgb(var(--popover));
+  --color-popover-foreground: rgb(var(--popover-foreground));
+  --color-primary: rgb(var(--primary));
+  --color-primary-foreground: rgb(var(--primary-foreground));
+  --color-secondary: rgb(var(--secondary));
+  --color-secondary-foreground: rgb(var(--secondary-foreground));
+  --color-muted: rgb(var(--muted));
+  --color-muted-foreground: rgb(var(--muted-foreground));
+  --color-accent: rgb(var(--accent));
+  --color-accent-foreground: rgb(var(--accent-foreground));
+  --color-destructive: rgb(var(--destructive));
+  --color-destructive-foreground: rgb(var(--destructive-foreground));
+  --color-border: rgb(var(--border));
+  --color-input: rgb(var(--input));
+  --color-ring: rgb(var(--ring));
+  --radius: var(--radius);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background-color: rgb(var(--background));
+  color: rgb(var(--foreground));
   font-family: var(--font-manrope), Arial, Helvetica, sans-serif;
   text-rendering: optimizeLegibility;
 }
@@ -32,45 +88,3 @@ h3 {
   letter-spacing: 0.01em;
 }
 
-.brand-page {
-  background:
-    radial-gradient(1200px 500px at 80% -10%, rgba(217, 180, 183, 0.1), transparent 55%),
-    radial-gradient(700px 300px at 0% 10%, rgba(255, 255, 255, 0.03), transparent 50%),
-    var(--background);
-  color: var(--foreground);
-}
-
-.brand-surface {
-  background-color: var(--surface);
-}
-
-.brand-card {
-  background-color: var(--card);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.brand-muted {
-  color: var(--muted);
-}
-
-.brand-accent-text {
-  color: var(--accent-strong);
-}
-
-.brand-button {
-  background-color: var(--accent-strong);
-  color: #1a1a1a;
-}
-
-.brand-button:hover {
-  background-color: var(--accent);
-}
-
-.brand-button-ghost {
-  border: 1px solid rgba(231, 199, 202, 0.55);
-  color: #f4f4f5;
-}
-
-.brand-button-ghost:hover {
-  background-color: rgba(231, 199, 202, 0.08);
-}

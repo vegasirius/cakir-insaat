@@ -8,10 +8,10 @@ export function FeaturedProjects() {
   const featured = projects.slice(0, 3);
 
   return (
-    <section className="bg-[#0a0a0a] py-20 text-white sm:py-32">
+    <section className="bg-background py-20 text-foreground sm:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <div className="text-center">
-          <p className="font-display text-sm uppercase tracking-widest text-zinc-400">
+          <p className="font-display text-sm uppercase tracking-widest text-muted-foreground">
             Portfolyo
           </p>
           <h2 className="mt-4 font-display text-4xl md:text-5xl">

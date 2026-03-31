@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { Button } from "@/components/ui/button";
 
 const services = [
   {
@@ -17,36 +18,36 @@ const services = [
   },
 ];
 
+// ... existing code
 export default function HizmetlerPage() {
   return (
-    <div className="brand-page min-h-screen">
+    <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
       <main className="mx-auto w-full max-w-6xl px-6 py-20">
-        <p className="brand-accent-text text-xs font-semibold uppercase tracking-[0.2em]">Hizmetler</p>
+        <p className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">Hizmetler</p>
         <h1 className="mt-2 text-4xl">Uçtan uca inşaat çözümleri</h1>
-        <p className="brand-muted mt-5 max-w-3xl text-base leading-8">
+        <p className="mt-5 max-w-3xl text-base leading-8 text-muted-foreground">
           Projenizin ölçeğine ve ihtiyacına uygun şekilde teknik planlama, uygulama ve teslim süreçlerini yönetiyoruz.
         </p>
 
         <div className="mt-10 grid gap-5 md:grid-cols-3">
           {services.map((service, index) => (
-            <article key={service.title} className="brand-card rounded-2xl p-6">
-              <p className="brand-accent-text text-xs uppercase tracking-[0.18em]">{String(index + 1).padStart(2, "0")}</p>
+            <article key={service.title} className="rounded-2xl border bg-card p-6 text-card-foreground">
+              <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">{String(index + 1).padStart(2, "0")}</p>
               <h2 className="mt-3 text-xl font-semibold">{service.title}</h2>
-              <p className="brand-muted mt-4 text-sm leading-7">{service.text}</p>
+              <p className="mt-4 text-sm leading-7 text-muted-foreground">{service.text}</p>
             </article>
           ))}
         </div>
 
-        <div className="brand-card mt-12 rounded-2xl p-6 md:p-8">
+        <div className="mt-12 rounded-2xl border bg-card p-6 text-card-foreground md:p-8">
           <h2 className="text-2xl font-semibold">Projeniz için teklif alın</h2>
-          <p className="brand-muted mt-3">Saha keşfi ve teknik değerlendirme için bizimle iletişime geçebilirsiniz.</p>
-          <Link
-            href="/iletisim"
-            className="brand-button mt-6 inline-flex rounded-md px-5 py-3 text-sm font-semibold transition"
-          >
-            İletişim Sayfasına Git
-          </Link>
+          <p className="mt-3 text-muted-foreground">Saha keşfi ve teknik değerlendirme için bizimle iletişime geçebilirsiniz.</p>
+          <Button asChild className="mt-6">
+            <Link href="/iletisim">
+              İletişim Sayfasına Git
+            </Link>
+          </Button>
         </div>
       </main>
       <SiteFooter />
